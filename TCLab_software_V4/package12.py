@@ -28,3 +28,9 @@ def broida1(MV,Kp,Tg,Tu,Ts):
 
 def broida2(MV,Kp,T2,T1,Ts): 
     PV = FOPDT(MV,Kp,5.5*(T2-T1),(2.8*T1)-(1.8*T2),Ts)
+
+def VDG(MV,a,Kp,Tu,Tg,Ts):
+    pass #a faire
+
+def Strejc(MV,Kp,T2,T1,Ts):
+    PV = FOPDT(MV,Kp,5.5*(T2-T1),(2.8*T1)-(1.8*T2),Ts)
