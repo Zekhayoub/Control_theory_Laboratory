@@ -12,7 +12,7 @@ from package_DBR import myRound, SelectPath_RT, Delay_RT, FO_RT, FOPDT, SOPDT, F
 
 # Variable from graphical method 
 
-a = (0.529-0.367)#temp dif
+a = (0.529-0.367)#temp dif 
 Kp = 0.529 #without unit
 T1 = 98 #sec
 T2 = 120 #sec
