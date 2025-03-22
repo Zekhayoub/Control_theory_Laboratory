@@ -39,7 +39,7 @@ def IMC_Tuning(Kp,theta,T,T2=0,gamma=0.1,order=1):
 
     #for a first or second order process
     Tclp = gamma*T
-
+   
     if order == 1: 
         Kc = ((T+(theta/2))/(Tclp+(theta/2))) /Kp
         Ti = T+(theta/2)
@@ -102,9 +102,12 @@ def PID_RT(SP, PV, Man, MVMan, MVFF, Kc, Ti, Td, alpha, Ts, MVmin, MVmax, MV, MV
     Tfd = alpha*Td
         
 
+
     # MVP initialization
     if len(MVP)==0:
         MVP.append(Kc*E[-1])
+    else:
+        MVP.append(Kc * E[-1])
 
 
     # MVI initialization
@@ -112,14 +115,14 @@ def PID_RT(SP, PV, Man, MVMan, MVFF, Kc, Ti, Td, alpha, Ts, MVmin, MVmax, MV, MV
         MVI.append((Kc*Ts/Ti)*E[-1])
     else:
         if methodI=='TRAP':
-            MVI.append(MVI[-1]+(0.5*Kc*Ts/Ti)*(E[-1]+E[-2]))
+            MVI.append(MVI[-1]+(0.5*Kc*Ts/Ti)*(E[-2]-E[-1]))
         else : 
             MVI.append(MVI[-1]+(Kc*Ts/Ti)*E[-1])
 
         
     # MVD initialization
     if len(MVD)==0:
-        MVD.append((Tfd/(Tfd+Ts))*MVD[-1]+(Kc*Td/(Tfd+Ts))*(E[-2]-E[-1]))
+        MVD.append(0)
     else:
         if methodD=='TRAP':
             MVD.append((Tfd-(Ts/2)/(Tfd+(Ts/2)))*MVD[-1]+(Kc*Td/(Tfd+(Ts/2)))*(E[-2]-E[-1]))
